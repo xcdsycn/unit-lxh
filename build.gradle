@@ -1,0 +1,32 @@
+group 'com.lxh.unit'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile "org.mockito:mockito-core:1.+"
+}
+
+task hello << {
+        println 'Hello world!'
+}
+
+task intro(dependsOn: hello) << {
+    println("I'm gradle")
+}
+
+4.times {counter ->
+    task "task$counter" << {
+        println "I'm task number $counter"
+    }
+}
+
+task0.dependsOn task2,task3
